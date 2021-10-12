@@ -1,5 +1,12 @@
 #!/bin/bash
 
+
+# removes all dead screens
+echo 'wiping and quitting dead and detached screens'
+screen -wipe
+screen -ls | grep '(Detached)' | awk '{print $1}' | xargs -I % -t screen -X -S % quit
+
+
 cd src
 ls
 service openvswitch-switch start
