@@ -69,7 +69,7 @@ To shut down the infrastructure you can either the use the API-functionality **h
  
  ```bash
 cd deployments/docker && \
-bash docker_stop.sh
+bash stop_docker.sh
  ```
 
 ## Startup
@@ -77,7 +77,7 @@ To restart the infrastructure you can either the use the API-functionality **ht<
  
  ```bash
 cd deployments/docker && \
-bash start_docker_api.sh
+bash start_docker.sh
  ```
 
 ## User Data Management
