@@ -34,10 +34,10 @@ The Digital Twin Simulation and the SIEM system of the prototype are based on a 
 1. Install [Docker](https://docs.docker.com/engine/install/ubuntu/) and [Docker-Compose](https://docs.docker.com/compose/install/) as described in the respective docs
 2. Clone the required repositories:
 ```bash
-git clone git@github.com:DigitalTwinSocCyberrange/DigitalTwinCyberrange.git && \
-git clone git@github.com:DigitalTwinSocCyberrange/frontendCyberrange.git
+git clone https://github.com/treddl/DTCRforIR_backend.git && \
+git clone https://github.com/treddl/DTCRforIR_frontend.git
  ```
- 3. **Install dependencies for deployment of the frontend:**
+ 3. **Install dependencies for deployment of the front end:**
 ```bash
 cd frontendCyberrange && \
 bash setup_frontend.sh
@@ -48,7 +48,7 @@ bash setup_frontend.sh
 cd DigitalTwinCyberrange && \
 bash setup_python.sh
  ```
-5. **Setup and start the cyber range**: This will start the microservice-infrastructure (Elasticsearch, Filebeat, Logstash, Kibana, Dsiem and Digital Twin), the cyber range frontend (running on port 7080) and the API that connects both
+5. **Setup and start the cyber range**: This will start the microservice-infrastructure (Elasticsearch, Filebeat, Logstash, Kibana, Dsiem and Digital Twin), the cyber range front end (running on port 7080) and the API that connects both
 ```bash
 cd deployments/docker && \
 bash init_cyberrange.sh
@@ -119,7 +119,7 @@ While taking part in the cyber range training the following data is recorded:
 
 *This example user data set provides user data for two rounds of training with three trainees each.*
 
-2. Add all valid userIDs to the [usernames.js](https://github.com/DigitalTwinSocCyberrange/frontendCyberrange/blob/main/src/data/usernames.js) file in the frontend project. *For the previous example this would be adding userIDs 7683, 1235, 2364, 2346, 5671	and 2397.*
+2. Add all valid userIDs to the [usernames.js](https://github.com/DigitalTwinSocCyberrange/frontendCyberrange/blob/main/src/data/usernames.js) file in the front end project. *For the previous example this would be adding userIDs 7683, 1235, 2364, 2346, 5671	and 2397.*
 3. Either add the user data manually to the Firestore collection or use the provided python [scripts](https://github.com/DigitalTwinSocCyberrange/frontendCyberrange/tree/main/userDataScripts) as described in the next section to import user data from a csv file to the Firestore collection.
 
 ### Import and export of user data with .csv files
