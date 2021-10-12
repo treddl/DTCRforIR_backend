@@ -29,14 +29,14 @@ class FPCPS(MiniCPS):
         
         s1.cmd('screen -dmSL tank python physical_process.py')
         s1.cmd('screen -dmSL bottle python physical_process_bottle.py')
-        plc3.cmd('screen -dmSL plc3 bash plc3_loop.sh')
-        plc2.cmd('screen -dmSL plc2 bash plc2_loop.sh')
-        plc1.cmd('screen -dmSL plc1 bash plc1_loop.sh')
-        plc1.cmd('screen -dmSL plc1 python tcp_capture.py -Logfile')
-        hmi.cmd('screen -dmSL hmi python firewall.py -Logfile')
-        attacker.cmd('screen -dmSL attacker bash rm_attack.sh -Logfile')
-        attacker.cmd('screen -dmSL attacker bash dos_attack.sh -Logfile')
-        attacker.cmd('screen -dmSL attacker bash mitm_attack.sh')
+        plc3.cmd('screen -dmSL plc3_process bash plc3_loop.sh')
+        plc2.cmd('screen -dmSL plc2_process bash plc2_loop.sh')
+        plc1.cmd('screen -dmSL plc1_process bash plc1_loop.sh')
+        plc1.cmd('screen -dmSL plc1_ids python tcp_capture.py -Logfile')
+        hmi.cmd('screen -dmSL hmi_ids python firewall.py -Logfile')
+        attacker.cmd('screen -dmSL attacker_rm_attack bash rm_attack.sh -Logfile')
+        attacker.cmd('screen -dmSL attacker_dos_attack bash dos_attack.sh -Logfile')
+        attacker.cmd('screen -dmSL attacker_mitm_attack bash mitm_attack.sh')
 
         # to see the scripts running (xterm required),
         # uncomment the following lines (while removing the .cmd lines above)
