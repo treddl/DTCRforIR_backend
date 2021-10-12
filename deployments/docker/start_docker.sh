@@ -7,16 +7,13 @@ pkill screen
 docker-compose stop 
 docker-compose up -d
 
-screen -dmSL main /bin/bash kbndashboard-import.sh localhost ../kibana/dashboard-siem.json
+screen -dmSL kibana_dashbaord_import /bin/bash kbndashboard-import.sh localhost ../kibana/dashboard-siem.json
 
 #restart api
 cd ./../../src
-screen -dmSL main bash deactivate_directives.sh -Logfile
+screen -dmSL run_deactivate_directives bash deactivate_directives.sh -Logfile
 cd pyrest
-screen -dmSL main python api.py -Logfile
+screen -dmSL run_api python api.py -Logfile
 
 cd ./../../../frontendCyberrange
 screen -dmSL frontend npm run serve -Logfile
-
-
-
