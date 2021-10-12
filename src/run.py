@@ -37,6 +37,16 @@ class FPCPS(MiniCPS):
         attacker.cmd('screen -dmSL attacker_rm_attack bash rm_attack.sh -Logfile')
         attacker.cmd('screen -dmSL attacker_dos_attack bash dos_attack.sh -Logfile')
         attacker.cmd('screen -dmSL attacker_mitm_attack bash mitm_attack.sh')
+        
+        # creating screens to get inside the nodes/hosts
+        
+        s1.cmd('screen -dmSL s1_shell')
+        plc3.cmd('screen -dmSL plc3_shell')
+        plc2.cmd('screen -dmSL plc2_shell')
+        plc1.cmd('screen -dmSL plc1_shell')
+        hmi.cmd('screen -dmSL hmi_shell')
+        attacker.cmd('screen -dmSL attacker_shell')
+        
 
         # to see the scripts running (xterm required),
         # uncomment the following lines (while removing the .cmd lines above)
