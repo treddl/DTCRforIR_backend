@@ -39,14 +39,14 @@ git clone https://github.com/treddl/DTCRforIR_frontend.git
  ```
  3. **Install dependencies for deployment of the front end:**
 ```bash
-cd frontendCyberrange && \
+cd DTCRforIR_frontend && \
 bash setup_frontend.sh
  ```
 
 4. **Install dependencies for deployment of the Flask-Api:**
 ```bash
-cd DigitalTwinCyberrange && \
-bash setup_python.sh
+cd DTCRforIR_backend/src && \
+bash setup_cyberrange_host.sh
  ```
 5. **Setup and start the cyber range**: This will start the microservice-infrastructure (Elasticsearch, Filebeat, Logstash, Kibana, Dsiem and Digital Twin), the cyber range front end (running on port 7080) and the API that connects both
 ```bash
@@ -69,7 +69,7 @@ To shut down the infrastructure you can either the use the API-functionality **h
  
  ```bash
 cd deployments/docker && \
-bash stop_docker.sh
+bash docker_stop.sh
  ```
 
 ## Startup
@@ -77,7 +77,7 @@ To restart the infrastructure you can either the use the API-functionality **ht<
  
  ```bash
 cd deployments/docker && \
-bash start_docker.sh
+bash docker_start.sh
  ```
 
 ## User Data Management
@@ -128,13 +128,13 @@ While taking part in the cyber range training the following data is recorded:
 3. Replace the sample user data in [userdata.csv](https://github.com/DigitalTwinSocCyberrange/frontendCyberrange/tree/main/userDataScripts/usernames.csv) with your user data sets
 4. Run import script:
 ```bash
-cd frontendCyberrange/userDataScripts && \
+cd DTCRforIR_frontend/userDataScripts && \
 python3 importFromCsv.py
  ```
 *To export user data (points, level, times) after the training, run:*
  
  ```bash
-cd frontendCyberrange/userDataScripts && \
+cd DTCRforIR_frontend/userDataScripts && \
 python3 exportToCsv.py
  ```
 ## Research and Citation
