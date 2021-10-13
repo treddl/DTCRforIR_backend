@@ -1,5 +1,14 @@
 # DigitalTwinSocCyberrange
-**DigitalTwinSocCyberrange** is a research project by the University of Regensburg and the Ionian University. This prototype aims to provide training for SOC analysts in a highly realistic scenario making use of the simulation component of the digital twin of an industrial filling plant. In the scenario, an attacker has gained access to the industrial system and performs various attacks (Man-In-The-Middle-Attack, Log-File-Manipulation-Attack and Denial-Of-Service-Attack) to disrupt the filling plant. The components of the industrial system thereby produce log data which are forwarded to a SIEM system. Completing the tasks of the cyber range, a trainee gains knowledge about the selected attacks on the industrial system and how to detect these attacks in a SIEM system by creating correlation rules.
+**DTCRforIR** is Master's thesis project at the University of Regensburg. 
+It is based on a prior project of the University of Regensburg and the Ionian University, namely [DigitalTwinSocCyberrange](https://github.com/DigitalTwinSocCyberrange). 
+This prototype aims to provide training for incident responders in a highly realistic scenario making use of the simulation component of the digital twin of an industrial filling plant. 
+In the scenario, an attacker has gained access to the industrial system and performs two attacks (Man-In-The-Middle via ARP spoofing & a Denial-of-Service attack via ICMP flooding) to disrupt the filling operations. 
+
+The components of the industrial system thereby produce log data which are forwarded to a SIEM system. 
+
+Completing the tasks of the cyber range, a trainee gains knowledge about the selected attacks on the industrial system and how to respond these attacks. This is achieved by investigating the corrensponding alarms and events in the SIEM and taking appropriate action to contain, erdicated and finally recover from the attack.
+
+
 The following video gives an introduction to the project and the learning concept of the cyber range.
 <p align="center">
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=6czq4r2_kTk
@@ -14,12 +23,24 @@ alt="Introduction" width="500" border="2" corder-color="black" /></a> </p>
 
 The concept was evaluated in an extensive **user study**. The results of the user study are presented in the [userStudy repository](https://github.com/DigitalTwinSocCyberrange/userStudy). 
 
+## Conceptual overview of the cyber range design
+The cyber range consists for four main building blocks: a **Virutal Filling Plant**, a **SIEM-based SOC**, **Learning Management System (LMS)**, and a **REST-API**.
+
+
 
 ## Architecture of the prototype
-- The **Virtual Environment** consists of the simulation component of a [Digital Twin](./src) which is tailored to the needs of the cyber range scenario. It is implemented with [MiniCPS](https://github.com/scy-phy/minicps), an academic framework for simulating cyber-physical systems which builds upon [Mininet](http://mininet.org). The simulated attacks are performed with [Ettercap](https://www.ettercap-project.org/) and [hping](http://www.hping.org/). The firewall functionalities are implemented with [Scapy](https://scapy.net/).
-- The **SIEM** system is realized with [Dsiem](https://www.dsiem.org/), which builds upon [Filebeat, Elasticsearch, Logstash and Kibana](https://www.elastic.co/).
- 
-The Digital Twin Simulation and the SIEM system of the prototype are based on a microservice architecture realized with **Docker Containers**. 
+The cyber range is contained within a Ubuntu-based Virtual Machine.
+
+Two of the building blocks are realized through a micro-service architecture based on **Docker Containers**: 
+
+- The **Virutal Filling Plant**, in turn, consists of three components contained in one Docker container:
+    - a simulation of a [Digital Twin](./src) which is tailored to the needs of the cyber range scenario. It is implemented with [MiniCPS](https://github.com/scy-phy/minicps), an academic framework for simulating cyber-physical systems which builds upon [Mininet](http://mininet.org). 
+    - simulated attacks based on two common tools used for cyberattacks: [Ettercap](https://www.ettercap-project.org/) and [hping](http://www.hping.org/). 
+    - an Intrusion Dectection System (IDS) implemented with [Scapy](https://scapy.net/).
+- The **SIEM-based SOC** system is realized with [Dsiem](https://www.dsiem.org/), which builds upon [Filebeat, Elasticsearch, Logstash and Kibana](https://www.elastic.co/). and comprises five Docker containers.
+
+The remaining two building blocks run directly on the Ubuntu-based Virtual Machine.
+
 
 - The **Learning Management System (LMS)** is implemented with the JavaScript Framework [Vue.js](https://vuejs.org/). The respective source code is stored in the [frontendCyberrange](https://github.com/DigitalTwinSocCyberrange/frontendCyberrange) repository of the project.
 - A **[REST-API]((https://github.com/DigitalTwinSocCyberrange/DigitalTwinCyberrange/tree/main/src/pyrest))** implemented with [Flask](https://flask.palletsprojects.com/en/1.1.x/) connects the LMS, the Digital Twin and the SIEM-System
@@ -32,8 +53,11 @@ The Digital Twin Simulation and the SIEM system of the prototype are based on a 
 ## Installation (for Ubuntu 20.04)
 
 1. Install [Docker](https://docs.docker.com/engine/install/ubuntu/) and [Docker-Compose](https://docs.docker.com/compose/install/) as described in the respective docs
-2. Clone the required repositories:
+
+2. create a joint directory and clone the required repositories:
 ```bash
+mkdir cyberrange && \
+cd cyberrange && \
 git clone https://github.com/treddl/DTCRforIR_backend.git && \
 git clone https://github.com/treddl/DTCRforIR_frontend.git
  ```
