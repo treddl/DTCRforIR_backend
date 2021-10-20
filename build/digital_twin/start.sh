@@ -18,6 +18,11 @@ rm ./logs/plc3.log
 rm ./logs/tcpdump.log
 rm ./logs/firewall.log
 
+
+# creates aliases and functions to ease navigation in and interaction with the docker container digital_twin
+# currently not workign properly
+# bash customize_bash_commands.sh
+
 # initiates the sqlite database for the physical filling process
 echo 'running src/init.py'
 python init.py

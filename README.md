@@ -69,7 +69,7 @@ bash setup_frontend.sh
 
 4. **Install dependencies for deployment of the Flask-Api:**
 ```bash
-cd DTCRforIR_backend/src && \
+cd DTCRforIR_backend/src/host_vm && \
 bash setup_cyberrange_host.sh
  ```
 5. **Setup and start the cyber range**: This will start the microservice-infrastructure (Elasticsearch, Filebeat, Logstash, Kibana, Dsiem and Digital Twin), the cyber range front end (running on port 7080) and the API that connects both

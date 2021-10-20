@@ -34,7 +34,7 @@ class FPCPS(MiniCPS):
         plc1.cmd('screen -dmSL plc1_process bash plc1_loop.sh')
         plc1.cmd('screen -dmSL plc1_ids python tcp_capture.py -Logfile')
         hmi.cmd('screen -dmSL hmi_ids python firewall.py -Logfile')
-        attacker.cmd('screen -dmSL attacker_rm_attack bash rm_attack.sh -Logfile')
+        #attacker.cmd('screen -dmSL attacker_rm_attack bash rm_attack.sh -Logfile')
         attacker.cmd('screen -dmSL attacker_dos_attack bash dos_attack.sh -Logfile')
         attacker.cmd('screen -dmSL attacker_mitm_attack bash mitm_attack.sh')
         
