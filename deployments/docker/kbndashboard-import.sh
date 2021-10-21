@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# importing the kibana-based dashbaord
 
 [ "$1" == "" ] || [ "$2" == "" ] || [ ! -e $2 ] && echo need the target kibana host as 1st argument, and dashboard json file to upload as 2nd argument && exit 1
 

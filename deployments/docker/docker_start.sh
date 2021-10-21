@@ -9,15 +9,23 @@
 #restart docker containers
 pkill screen
 docker-compose stop 
-docker-compose up -d --build
+docker-compose up -d 
 
+
+# imports the kibana-based dashboard
 screen -dmSL kibana_dashbaord_import /bin/bash kbndashboard-import.sh localhost ../kibana/dashboard-siem.json
 
-#restart api
+# reverts the dsiem correlation directives .json to .txt
 cd ./../../src
-screen -dmSL run_deactivate_directives bash deactivate_directives.sh -Logfile
-cd pyrest
-screen -dmSL run_api python api.py -Logfile
+rm ./logs/run_deactivate_directives-screen.log
+screen -dmSL run_deactivate_directives bash deactivate_directives.sh -Logfile ./logs/run_deactivate_directives-screen.log
 
+# restarts the API
+cd pyrest
+rm ../logs/run_api-screen.log
+screen -dmSL run_api python api.py -Logfile ../logs/run_api-screen.log
+
+# restarts the frontend
 cd ./../../../DTCRforIR_frontend
-screen -dmSL frontend npm run serve -Logfile
+rm frontend-screen.log
+screen -dmSL frontend npm run serve -Logfile frontend-screen.log
