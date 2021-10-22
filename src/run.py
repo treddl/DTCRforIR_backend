@@ -33,27 +33,29 @@ class FPCPS(MiniCPS):
 
         
         # run the scripts for the FILLING PROCESS in the respecitve mininet hosts
-        s1.cmd('screen -dmSL tank python physical_process.py -Logfile ./logs/tank-screen.log')
-        s1.cmd('screen -dmSL bottle python physical_process_bottle.py -Logfile ./logs/bottle-screen.log')
-        plc3.cmd('screen -dmSL plc3_process bash plc3_loop.sh -Logfile ./logs/plc3_process-screen.log')
-        plc2.cmd('screen -dmSL plc2_process bash plc2_loop.sh -Logfile ./logs/plc2_process-screen.log')
-        plc1.cmd('screen -dmSL plc1_process bash plc1_loop.sh -Logfile ./logs/plc1_process-screen.log')
+        s1.cmd('screen -dmS tank -L -Logfile ./logs/dt_screen_logs/tank-screen.log python physical_process.py')
+        s1.cmd('screen -dmS bottle -L -Logfile ./logs/dt_screen_logs/bottle-screen.log python physical_process_bottle.py')
+        plc3.cmd('screen -dmS plc3_process -L -Logfile ./logs/dt_screen_logs/plc3_process-screen.log bash plc3_loop.sh')
+        plc2.cmd('screen -dmS plc2_process -L -Logfile ./logs/dt_screen_logs/plc2_process-screen.log bash plc2_loop.sh')
+        plc1.cmd('screen -dmS plc1_process -L -Logfile ./logs/dt_screen_logs/plc1_process-screen.log bash plc1_loop.sh')
+        
+        
         
         # run the scripts for the DEFENSE CAPABILITY in the respecitve mininet hosts
-        
         ## run HIDS on PLC1 to log ICMP messages, ARP messages and log warning of ARP spoofing
-        #plc1.cmd('screen -dmSL plc1_ids python ./defense/tcp_capture.py -Logfile ./logs/plc1_ids-screen.log')
+        #plc1.cmd('screen -dmS plc1_ids -L -Logfile ./logs/dt_screen_logs/plc1_ids-screen.log python hids_plc1.py ')
         
         ## run NIDS on HMI to log unkown hosts in the network
-        #hmi.cmd('screen -dmSL hmi_ids python ./defense/firewall.py -Logfile ./logs/hmi_ids-screen.log')
+        #hmi.cmd('screen -dmS hmi_ids -L -Logfile ./logs/dt_screen_logs/hmi_ids-screen.log python nids_hmi.py ')
+        
+        
         
         # run the scripts for the ATTACK CAPABILITY in the respective mininet hosts
-        
         ## run DoS attack via ICMP flooding
-        #attacker.cmd('screen -dmSL attacker_dos_attack bash ./attack/dos_attack.sh -Logfile ./logs/attacker_dos_attack-screen.log')
+        #attacker.cmd('screen -dmS attacker_dos_attack -L -Logfile ./logs/dt_screen_logs/attacker_dos_attack-screen.log bash ./attack/dos_attack.sh')
         
         ## run MitM attack via ARP spoofing
-        #attacker.cmd('screen -dmSL attacker_mitm_attack bash ./attack/mitm_attack.sh -Logfile ./logs/attacker_mitm_attack-screen.log')
+        #attacker.cmd('screen -dmS attacker_mitm_attack -L -Logfile ./logs/dt_screen_logs/attacker_mitm_attack-screen.log bash ./attack/mitm_attack.sh')
         
         # create screens to get inside the nodes/hosts during run time
         s1.cmd('screen -dmSL s1_shell')

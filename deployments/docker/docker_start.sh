@@ -13,19 +13,18 @@ docker-compose up -d
 
 
 # imports the kibana-based dashboard
-screen -dmSL kibana_dashbaord_import /bin/bash kbndashboard-import.sh localhost ../kibana/dashboard-siem.json
+screen -dmS kibana_dashbaord_import -L -Logfile kibana_dashbaord_import-screen.log bash kbndashboard-import.sh localhost ../kibana/dashboard-siem.json
 
 # reverts the dsiem correlation directives .json to .txt
 cd ./../../src
-rm ./logs/run_deactivate_directives-screen.log
-screen -dmSL run_deactivate_directives bash deactivate_directives.sh -Logfile ./logs/run_deactivate_directives-screen.log
+screen -dmS run_deactivate_directives -L -Logfile ./logs/host_vm_screen_logs/run_deactivate_directives-screen.log bash deactivate_directives.sh 
 
 # restarts the API
 cd pyrest
-rm ../logs/api-screen.log
-screen -dmSL api python api.py -Logfile ../logs/api-screen.log
+screen -dmS api -L -Logfile ../logs/host_vm_screen_logs/api-screen.log python api.py 
+
 
 # restarts the frontend
 cd ./../../../DTCRforIR_frontend
 rm frontend-screen.log
-screen -dmSL frontend npm run serve -Logfile frontend-screen.log
+screen -dmS frontend -L -Logfile frontend-screen.log npm run serve 

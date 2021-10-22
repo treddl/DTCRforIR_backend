@@ -30,3 +30,4 @@ echo -n "Installing index pattern siem-alarm_events from $patternfile .. "
 idxpattern=$(cat $patternfile)
 curl -fsS -o /dev/null -X POST "http://${host}:5605/api/saved_objects/index-pattern/siem_alarm_events" -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d "$idxpattern" && \
 echo done || echo "failed to install, perhaps object already exist?"
+Cannot exec 'localhost': No such file or directory

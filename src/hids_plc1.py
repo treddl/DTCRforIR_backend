@@ -14,12 +14,17 @@ Logs warning for potential ARP spoofing with func check_arp_spoof().
 """
 
 from scapy.all import *
-from utils import HMI_ADDR
+from utils import HMI_ADDR, HMI_MAC, PLC1_ADDR, PLC1_MAC, PLC2_ADDR, PLC2_MAC, PLC3_ADDR, PLC3_MAC, ATTACKER_ADDR, ATTACKER_MAC
 import logging
 import time
 
 global known_mac_adresses
-known_mac_adresses={}
+# represents base layer IP-MAC address mapping
+known_mac_adresses={HMI_ADDR: HMI_MAC, 
+                    PLC1_ADDR: PLC1_MAC, 
+                    PLC2_ADDR: PLC2_MAC, 
+                    PLC3_ADDR: PLC3_MAC,
+                    ATTACKER_ADDR: ATTACKER_MAC}
 
 # set directory and format of logs 
 logging.basicConfig(filename='logs/hids_plc1.log',format='%(levelname)s %(asctime)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.DEBUG)
@@ -37,24 +42,17 @@ def check_arp_spoof(pkt, ip_src, ip_dst):
     # save source MAC address from packet
     mac_src = pkt.hwsrc
     
-    #add new/unknown mapping of source IP and MAC address
-    if not ip_src in known_mac_adresses:
-        known_mac_adresses[ip_src] = mac_src
-        print(mac_src, ip_src)
-    else:
-        #log an ARP spoof warning if the already known IP-MAC address mapping does not match the MAC address of the current packet
-        if (known_mac_adresses[ip_src] != mac_src):
-            #########
-            # legacy:
-            # TODO: clarify why both the srcip and dstip get the same IP address? (from pkt[ARP].psrc)
-            #log="%(srcip)s %(dstip)s "%{"srcip": pkt[ARP].psrc, "dstip": pkt[ARP].psrc}+"ARP-SPOOF-WARNING: "+mac_src+" and "+ known_mac_adresses[ip_src]
-
-            log="%(srcip)s %(dstip)s "%{"srcip": ip_src, "dstip": ip_dst}+"ARP-SPOOF-WARNING: "+mac_src+" does not match known "+ known_mac_adresses[ip_src]
-            print(log)
-            
-            # log ARP spoof warning in format
-            # WARNING 12/12/2021 11:46:36 AM 0.0.0.1 10.0.0.3 ARP-SPOOF-WARNING 00:00:00:00:05 does not match known 00:00:00:00:01
-            logging.warning(log)
+    #log an ARP spoof warning if the already known IP-MAC address mapping does not match the MAC address of the current packet
+    if (known_mac_adresses[ip_src] != mac_src):
+    #########
+    # legacy:
+    # TODO: clarify why both the srcip and dstip get the same IP address? (from pkt[ARP].psrc)
+        #log="%(srcip)s %(dstip)s "%{"srcip": pkt[ARP].psrc, "dstip": pkt[ARP].psrc}+"ARP-SPOOF-WARNING: "+mac_src+" and "+ known_mac_adresses[ip_src]
+        log="%(srcip)s %(dstip)s "%{"srcip": ip_src, "dstip": ip_dst}+"ARP-SPOOF-WARNING: "+mac_src+" does not match known "+ known_mac_adresses[ip_src]
+        print(log)
+    # log ARP spoof warning in format
+    # WARNING 12/12/2021 11:46:36 AM 0.0.0.1 10.0.0.3 ARP-SPOOF-WARNING 00:00:00:00:05 does not match known 00:00:00:00:01
+        logging.warning(log)
 
 
 # log all ARP messages
@@ -84,7 +82,7 @@ def arp_parse(pkt):
         print(log)
         
         # log ARP messages in format:
-        # INFO 12/12/2021 11:46:36 AM 0.0.0.1 10.0.0.3 ARP-REQUEST <PACKET_SUMMARY> 
+        # INFO 12/12/2021 11:46:36 AM 10.0.0.3 10.0.0.1 ARP-REPLY: Ether / ARP is at 00:00:00:00:00:05 says 10.0.0.3 
         logging.info(log)
 
 
@@ -92,8 +90,8 @@ def arp_parse(pkt):
 def icmp_parse(pkt):
     
     # save source and destination IP addresses of ICMP packet
-    ip_src = pkt[IP].psrc
-    ip_dst = pkt[IP].pdst
+    ip_src = pkt[IP].src
+    ip_dst = pkt[IP].dst
     
     # check ICMP message type
     if (pkt[ICMP].type == 0):
