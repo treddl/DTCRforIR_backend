@@ -1,4 +1,7 @@
-#script to restart plc2 when exited after dos attack
+#!/bin/bash
+#
+#script to run PLC2
+
 while true
 do
 python plc2.py

@@ -22,8 +22,8 @@ screen -dmSL run_deactivate_directives bash deactivate_directives.sh -Logfile ./
 
 # restarts the API
 cd pyrest
-rm ../logs/run_api-screen.log
-screen -dmSL run_api python api.py -Logfile ../logs/run_api-screen.log
+rm ../logs/api-screen.log
+screen -dmSL api python api.py -Logfile ../logs/api-screen.log
 
 # restarts the frontend
 cd ./../../../DTCRforIR_frontend

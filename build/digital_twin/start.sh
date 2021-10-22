@@ -3,14 +3,14 @@
 # preps the environment and starts the filling plant
 
 # removes all dead screens
-echo 'wiping and quitting dead and detached screens'
-screen -wipe
-screen -ls | grep '(Detached)' | awk '{print $1}' | xargs -I % -t screen -X -S % quit
-
+#echo 'wiping and quitting dead and detached screens'
+#screen -wipe
+#screen -ls | grep '(Detached)' | awk '{print $1}' | xargs -I % -t screen -X -S % quit
+pkill screen
 
 cd src
 
-# remove logs previous cyber range execution 
+# remove logs from previous cyber range execution 
 rm ./logs/*.log
 
 # start openvswitch and mininet

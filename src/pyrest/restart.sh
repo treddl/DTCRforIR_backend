@@ -1,2 +1,6 @@
+#!/bin/bash
+#
+# restarts the cyber range
+
 cd ./../../deployments/docker
-bash start_docker_api.sh
+bash docker_start.sh

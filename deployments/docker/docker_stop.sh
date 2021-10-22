@@ -13,6 +13,7 @@ bash deactivate_directives.sh
 
 ## quits the screen 'frontend' in the baselayer VM
 screen -X -S frontend quit
+screen -X -S api quit
 
 ## stop containers
 cd ../deployments/docker
