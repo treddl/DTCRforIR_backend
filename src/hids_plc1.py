@@ -28,7 +28,7 @@ known_mac_adresses={HMI_ADDR: HMI_MAC,
 
 # set directory and format of logs 
 logging.basicConfig(filename='logs/hids_plc1.log',format='%(levelname)s %(asctime)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.DEBUG)
-## note: here argumet <message> equals string variable <log> as defined in functions icmp_parse() and arp_parse()
+## note: here argumet <message> equals string variable <log> as defined in functions icmp_parse(), arp_parse(), and check_arp_spoof().
 
 
 # checks for ARP spoofing
@@ -44,14 +44,14 @@ def check_arp_spoof(pkt, ip_src, ip_dst):
     
     #log an ARP spoof warning if the already known IP-MAC address mapping does not match the MAC address of the current packet
     if (known_mac_adresses[ip_src] != mac_src):
-    #########
-    # legacy:
-    # TODO: clarify why both the srcip and dstip get the same IP address? (from pkt[ARP].psrc)
+        #########
+        # legacy:
+        # TODO: clarify why both the srcip and dstip get the same IP address? (from pkt[ARP].psrc)
         #log="%(srcip)s %(dstip)s "%{"srcip": pkt[ARP].psrc, "dstip": pkt[ARP].psrc}+"ARP-SPOOF-WARNING: "+mac_src+" and "+ known_mac_adresses[ip_src]
         log="%(srcip)s %(dstip)s "%{"srcip": ip_src, "dstip": ip_dst}+"ARP-SPOOF-WARNING: "+mac_src+" does not match known "+ known_mac_adresses[ip_src]
         print(log)
-    # log ARP spoof warning in format
-    # WARNING 12/12/2021 11:46:36 AM 0.0.0.1 10.0.0.3 ARP-SPOOF-WARNING 00:00:00:00:05 does not match known 00:00:00:00:01
+        # log ARP spoof warning in format
+        # WARNING 12/12/2021 11:46:36 AM 0.0.0.1 10.0.0.3 ARP-SPOOF-WARNING 00:00:00:00:05 does not match known 00:00:00:00:01
         logging.warning(log)
 
 
