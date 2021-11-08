@@ -1,4 +1,16 @@
-/src/screenlog.0
+# python run time files
+src/utils.pyc
+src/fp_db.sqlite
+
+# all logs
+src/logs/api-screen.log
+src/logs/run_deactivate_directives-screen.log
+src/logs/host_vm_screen_logs/run_deactivate_directives-screen.log
+src/logs/host_vm_screen_logs/api-screen.log
+
+
+
+
 README.md
 cpppo/
 example-logs/
@@ -8,8 +20,6 @@ oflops/
 oftest/
 openflow/
 pox/
-src/fp_db.sqlite
-src/pyrest/screenlog.0
 dsiem_backup/
 dsiem/docs/mkdocs
 dsiem/docs/TODO.md
