@@ -1,0 +1,33 @@
+{
+  "directives": [
+      {
+      "id": 10,
+      "name": "Successful test of SIEM alarm function: single stage",
+      "priority": 3,
+      "disabled": false,
+      "all_rules_always_active": false,
+      "kingdom": "Disfunctions",
+      "category": "Network communication",
+      "rules": [
+        {
+          "name": "TESTING SIEM ALARM - SUCCESSFULLY REACHED HOST",
+          "stage": 1,
+          "plugin_id": 1008,
+          "plugin_sid": [
+            1000
+          ],
+          "occurrence": 1,
+          "from": "ANY",
+          "to": "ANY",
+          "type": "PluginRule",
+          "port_from": "ANY",
+          "port_to": "ANY",
+          "protocol": "ANY",
+          "reliability": 7,
+          "timeout": 0
+        }
+      ]
+    }
+  ]
+}
+

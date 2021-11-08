@@ -1,0 +1,66 @@
+{
+  "directives": [
+      {
+      "id": 40,
+      "name": "MitM attack via ARP spoofing",
+      "priority": 3,
+      "disabled": false,
+      "all_rules_always_active": false,
+      "kingdom": "Attacks",
+      "category": "Spoofing",
+      "rules": [
+          {
+          "name": "ARP spoof warning",
+          "stage": 1,
+          "plugin_id": 1008,
+          "plugin_sid": [
+            23
+          ],
+          "occurrence": 1,
+          "from": "ANY",
+          "to": "ANY",
+          "type": "PluginRule",
+          "port_from": "ANY",
+          "port_to": "ANY",
+          "protocol": "ANY",
+          "reliability": 9,
+          "timeout": 0
+        },
+          {
+          "name": "VALUE-RECEPTION-FAILURE",
+          "stage": 2,
+          "plugin_id": 1008,
+          "plugin_sid": [
+            300
+          ],
+          "occurrence": 2,
+          "from": "ANY",
+          "to": "ANY",
+          "type": "PluginRule",
+          "port_from": "ANY",
+          "port_to": "ANY",
+          "protocol": "ANY",
+          "reliability": 2,
+          "timeout": 60
+        },          
+        {
+          "name": "SUCCESSFULL-VALUE-UPDATE",
+          "stage": 3,
+          "plugin_id": 1008,
+          "plugin_sid": [
+            100
+          ],
+          "occurrence": 1,
+          "from": "ANY",
+          "to": "ANY",
+          "type": "PluginRule",
+          "port_from": "ANY",
+          "port_to": "ANY",
+          "protocol": "ANY",
+          "reliability": 8,
+          "timeout": 30
+        }
+      ]
+    }
+  ]
+}

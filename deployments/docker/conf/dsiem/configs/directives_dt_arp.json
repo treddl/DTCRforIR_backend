@@ -1,0 +1,32 @@
+{
+  "directives": [
+      {
+      "id": 30,
+      "name": "ARP spoof warning",
+      "priority": 4,
+      "disabled": false,
+      "all_rules_always_active": false,
+      "kingdom": "Attacks",
+      "category": "Spoofing",
+      "rules": [
+        {
+          "name": "ARP spoof warning",
+          "stage": 1,
+          "plugin_id": 1008,
+          "plugin_sid": [
+            23
+          ],
+          "occurrence": 1,
+          "from": "ANY",
+          "to": "ANY",
+          "type": "PluginRule",
+          "port_from": "ANY",
+          "port_to": "ANY",
+          "protocol": "ANY",
+          "reliability": 9,
+          "timeout": 0
+        }
+      ]
+    }
+  ]
+}
