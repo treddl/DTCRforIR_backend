@@ -49,10 +49,9 @@ class FPPLC2(PLC):
                 self.send(SENSOR2, flowlevel, PLC2_ADDR)
                 # sensor2 = self.receive(SENSOR2, PLC2_ADDR)
                 print "DEBUG PLC2 - receive flowlevel (SENSOR 2): ", flowlevel
-                logging.info("Internal ENIP tag (SENSOR 2) updated: %.2f" % (
-                    flowlevel))
+                logging.info("SUCCESSFUL-VALUE-UPDATE plc2:: INFO: updated value from sensor 2: %.2f" % (flowlevel))
             except:
-                logging.info("Could not update internal ENIP tag (SENSOR 2)")
+                logging.warning("FAILED-VALUE-UPDATE plc2:: WARNING: failed to update value from sensor 2")
 
             time.sleep(PLC_PERIOD_SEC)
             # count += 1

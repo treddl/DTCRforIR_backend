@@ -47,7 +47,8 @@ class FPPLC1(PLC):
         # while (count <= PLC_SAMPLES):
         
         while True:
-            
+            """
+            # legecy code for 'log file manipulation attack'
             if not os.path.exists('logs/plc1.log'):
                 print("******************LOG FILE WAS DELETED")
                 print("******************LOG FILE WAS DELETED")
@@ -55,8 +56,9 @@ class FPPLC1(PLC):
                
                 for handler in logging.root.handlers[:]:
                     logging.root.removeHandler(handler)
-                logging.basicConfig(filename='logs/plc1.log', format='%(levelname)s %(asctime)s '+PLC1_ADDR+' '+PLC1_ADDR+' %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.DEBUG)
+                
                 logging.warning("LOG FILE MANIPULATION: Log file was deleted, new file created.")
+            """
             
             print("sensor: ", SENSOR1)
             liquidlevel_tank = float(self.get(SENSOR1))   # physical process simulation (sensor 1 reads value)
@@ -90,7 +92,7 @@ class FPPLC1(PLC):
                             flowlevel, SENSOR2_THRESH))
 
             except:
-                logging.warning("Flow level (SENSOR 2) is not received. Program is unable to proceed properly")
+                logging.warning("VALUE-RECEPTION-FAILURE plc1:: WARNING: failed to receive data from PLC2 (flow level of sensor 2); filling process is unable to proceed properly")
                 
 
             # read from PLC3
@@ -100,22 +102,23 @@ class FPPLC1(PLC):
                 self.send(SENSOR3_1, liquidlevel_bottle, PLC1_ADDR)
 
                 if liquidlevel_bottle >= BOTTLE_M['UpperBound']:
-                    print "INFO PLC1 - Liquid level (SENSOR 3) over BOTTLE_M['UpperBound']:  %.2f >= %.2f -> close mv (ACTUATOR 1)." %(
+                    print "INFO PLC1 - Liquid level (SENSOR 3) over BOTTLE_M['UpperBound']::  %.2f >= %.2f -> close mv (ACTUATOR 1)." %(
                         liquidlevel_bottle,BOTTLE_M['UpperBound'])
-                    logging.info("Liquid level (SENSOR 3) over BOTTLE_M['UpperBound']:  %.2f >= %.2f -> close mv (ACTUATOR 1)." %(
+                    logging.info("Liquid level (SENSOR 3) over BOTTLE_M['UpperBound']::  %.2f >= %.2f -> close mv (ACTUATOR 1)." %(
                         liquidlevel_bottle,BOTTLE_M['UpperBound']))
                     self.set(ACTUATOR1, 0)     # CLOSE actuator mv
                     self.send(ACTUATOR1, 0, PLC1_ADDR)
 
                 elif liquidlevel_bottle < BOTTLE_M['UpperBound'] and liquidlevel_tank > TANK_M['LowerBound']:
-                    print "INFO PLC1 - Liquid level (SENSOR 3) under BOTTLE_M['UpperBound']: %.2f < %.2f ->  open mv (ACTUATOR 1)." %(
+                    print "INFO PLC1 - Liquid level (SENSOR 3) under BOTTLE_M['UpperBound']:: %.2f < %.2f ->  open mv (ACTUATOR 1)." %(
                         liquidlevel_bottle, BOTTLE_M['UpperBound'])
-                    logging.info("Liquid level (SENSOR 3) under BOTTLE_M['UpperBound']: %.2f < %.2f -> open mv (ACTUATOR 1)." %(
+                    logging.info("Liquid level (SENSOR 3) under BOTTLE_M['UpperBound']:: %.2f < %.2f -> open mv (ACTUATOR 1)." %(
                         liquidlevel_bottle, BOTTLE_M['UpperBound']))
                     self.set(ACTUATOR1, 1)  # OPEN actuator mv
                     self.send(ACTUATOR1, 1, PLC1_ADDR)
+            
             except:
-                logging.warning("Liquid level (SENSOR 3) is not received. Program is unable to proceed properly")
+                logging.warning("VALUE-RECEPTION-FAILURE plc1:: WARNING: failed to receive data from PLC3 (liquid level of sensor 3); filling process is unable to proceed properly")
                
 
             time.sleep(PLC_PERIOD_SEC)

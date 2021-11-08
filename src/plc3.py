@@ -24,10 +24,11 @@ class FPPLC3(PLC):
         time.sleep(sleep)
 
     def main_loop(self, sleep=0.0):
-        """plc3 main loop.
-                    - read liquid level of bottle (sensor3)
-                    - update internal enip server
-                """
+        """
+        plc3 main loop.
+        - read liquid level of bottle (sensor3)
+        - update internal enip server
+        """
 
         print 'DEBUG: FP PLC3 enters main_loop.'
         print
@@ -47,10 +48,10 @@ class FPPLC3(PLC):
                 self.send(SENSOR3, liquidlevel_bottle, PLC3_ADDR)
                 # sensor3 = self.receive(SENSOR3, PLC3_ADDR)
                 print "DEBUG PLC3 - receive liquidlevel_bottle (SENSOR 3): ", liquidlevel_bottle
-                logging.info("Internal ENIP tag (SENSOR 3) updated: %.2f" % (
-                    liquidlevel_bottle))
+                logging.info("SUCCESSFUL-VALUE-UPDATE plc3:: INFO: updated value from sensor 3: %.2f" % (liquidlevel_bottle))
+
             except:
-                logging.info("Could not update internal ENIP tag (SENSOR 3)")
+                logging.warning("FAILED-VALUE-UPDATE plc3:: WARNING: failed to update value from sensor 3")
 
             time.sleep(PLC_PERIOD_SEC)
             # count += 1
