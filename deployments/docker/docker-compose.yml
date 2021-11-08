@@ -44,13 +44,13 @@ services:
     image: docker.elastic.co/kibana/kibana:7.6.1
     environment:
       - XPACK_MONITORING_ENABLED=false
-
+      - TELEMETRY_ALLOWCHANGINGOPTINSTATUS=false
     links:
       - elasticsearch
     ports:
       - 5605:5601
     networks:
-      - siemnet
+      - siemnet  
 
   dsiem:
     container_name: dsiem

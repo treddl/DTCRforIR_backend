@@ -13,6 +13,7 @@ RUN apt-get install -y sudo \
     && apt-get install -y nano \
     && apt-get install -y iptables \
     && apt-get install -y arp-scan \
+    && apt-get install -y arping \
     && apt-get install -y nmap \
     && apt-get install -y screen \
     && git clone git://github.com/mininet/mininet \
