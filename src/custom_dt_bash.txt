@@ -1,0 +1,20 @@
+alias ls='ls -la'
+
+alias ebash='nano .bashrc'
+alias ebashreload='source .bashrc'
+
+
+alias slist='screen -ls'
+
+alias sr='screen -r'
+
+snew () {
+ screen -dmSL "$@"
+}
+
+sq () {
+ screen -X -S "$1" quit
+}
+
+
+alias hello='echo hello'
