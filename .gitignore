@@ -3,12 +3,9 @@ src/utils.pyc
 src/fp_db.sqlite
 
 # all logs
-src/logs/api-screen.log
-src/logs/run_deactivate_directives-screen.log
-src/logs/host_vm_screen_logs/run_deactivate_directives-screen.log
-src/logs/host_vm_screen_logs/api-screen.log
-
-
+src/logs/*.log
+src/logs/host_vm_screen_logs/*.log
+*screenlog.0
 
 
 README.md
