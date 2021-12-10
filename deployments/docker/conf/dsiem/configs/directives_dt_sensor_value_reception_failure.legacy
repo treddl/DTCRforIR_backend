@@ -6,8 +6,8 @@
       "priority": 3,
       "disabled": false,
       "all_rules_always_active": false,
-      "kingdom": "Disfunctions",
-      "category": "Sensor communication",
+      "kingdom": "WARNING",
+      "category": "NETWORK COMMUNICATION",
       "rules": [
         {
           "name": "PLC1 fails to receive sensor values",

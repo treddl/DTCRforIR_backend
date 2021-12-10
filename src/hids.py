@@ -23,6 +23,8 @@ from utils import HMI_ADDR, HMI_MAC, PLC1_ADDR, PLC1_MAC, PLC2_ADDR, PLC2_MAC, P
 global hids_host
 global system_name 
 global known_mac_adresses
+global known_hosts
+global host
 
 # represents baseline IP-MAC address mapping
 known_mac_adresses={HMI_ADDR: HMI_MAC, 
@@ -42,9 +44,16 @@ def check_arp_spoof(pkt, ip_src, ip_dst, mac_src):
     
     #log warning if the current ARP frame's src MAC addr does not match the baseline IP-MAC addr mapping
     if (known_mac_adresses[ip_src] != mac_src):
-        log=hids_host+' '+hids_host+' '+'ARP-SPOOF-WARNING '+system_name+':: WARNING: '+mac_src+" does not match known "+known_mac_adresses[ip_src]
+        log=hids_host+' '+hids_host+' '+'ARP-spoof-WARNING '+system_name+':: WARNING: IP (' +ip_src+ ') claimes to have MAC (' +mac_src+"); this does not match known MAC "+known_mac_adresses[ip_src]
         print(log)
         logging.warning(log)
+        
+        
+def log_icmp_scan(ip_src):
+    add_info = host.upper()+ ' (' +hids_host+') successfully reached host:'+ ip_src
+    log=hids_host+' '+hids_host+' test-warning  '+system_name+':: WARNING: ' + add_info
+    print(log)
+    logging.warning(log)
 
 
 # log ARP messages
@@ -57,11 +66,11 @@ def arp_parse(pkt):
     # capture only ARP frames from or directed at the present host
     if (ip_src == hids_host or ip_dst == hids_host):
         if (pkt[ARP].op == 1):
-            arp_op="ARP-REQUEST"
+            arp_op="ARP-request"
             add_info=arp_op+': '+str(ip_src)+'('+mac_src+')'+" is asking about "+str(ip_dst)            
             log=str(ip_src)+' '+str(ip_dst)+' '+arp_op+' '+system_name+':: INFO: '+add_info
         elif (pkt[ARP].op == 2):
-            arp_op="ARP-REPLY"
+            arp_op="ARP-reply"
             add_info=arp_op+': '+str(ip_src)+" has MAC address "+mac_src
             log=str(ip_src)+' '+str(ip_dst)+' '+arp_op+' '+system_name+':: INFO: '+add_info
             check_arp_spoof(pkt, ip_src, ip_dst, mac_src)
@@ -85,9 +94,11 @@ def icmp_parse(pkt):
     if (ip_src == hids_host or ip_dst == hids_host):
         # check ICMP message type
         if (pkt[ICMP].type == 0):
-            icmp_type="ICMP-REPLY"
+            icmp_type="ICMP-reply"
+            if (system_name == known_hosts[3]):
+                log_icmp_scan(ip_src)
         elif (pkt[ICMP].type == 8):
-            icmp_type="ICMP-REQUEST"
+            icmp_type="ICMP-request"
         else:
             icmp_type="ICMP-OTHER"
             
@@ -120,14 +131,20 @@ known_hosts = ['plc1', 'plc2', 'plc3', 'hmi', 'attacker']
  
 if (str(host) == known_hosts[0]):
     hids_host = PLC1_ADDR
+    system_name = 'ids_'+ host
 elif (str(host) == known_hosts[1]):
     hids_host = PLC2_ADDR
+    system_name = 'ids_'+ host
 elif (str(host) == known_hosts[2]):
     hids_host = PLC3_ADDR
+    system_name = 'ids_'+ host
 elif (str(host) == known_hosts[3]):
     hids_host = HMI_ADDR
+    system_name = 'ids_'+ host
 elif (str(host) == known_hosts[4]):
     hids_host = ATTCKR_ADDR
+    system_name = "ids_work-station"
+    host = "work-station"
 else:
     raise ValueError('Given host name "'+host+'" does not match list of known hosts: '+ str(known_hosts))
 
@@ -135,8 +152,7 @@ else:
 hids_host = str(hids_host)    
 print('INFO hids_host name is: '+hids_host)
     # set directory and format of logs 
-
-system_name = 'hids_'+str(host)
+    
 print('INFO system_name is: '+system_name)
     
 file_name = 'logs/'+system_name+'.log'

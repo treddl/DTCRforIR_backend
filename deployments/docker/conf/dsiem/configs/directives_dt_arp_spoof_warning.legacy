@@ -1,20 +1,20 @@
 {
   "directives": [
       {
-      "id": 21,
-      "name": "PLC1 fails to receive sensor values from PLC3",
-      "priority": 3,
+      "id": 30,
+      "name": "ARP spoof warning",
+      "priority": 4,
       "disabled": false,
       "all_rules_always_active": false,
-      "kingdom": "Disfunctions",
-      "category": "Sensor communication",
+      "kingdom": "WARNING",
+      "category": "SPOOFING",
       "rules": [
         {
-          "name": "PLC1 says: failed to receive data from PCL3 (liquid level of sensor 3)",
+          "name": "ARP spoof warning",
           "stage": 1,
           "plugin_id": 1008,
           "plugin_sid": [
-            103
+            23
           ],
           "occurrence": 1,
           "from": "ANY",
@@ -23,7 +23,7 @@
           "port_from": "ANY",
           "port_to": "ANY",
           "protocol": "ANY",
-          "reliability": 7,
+          "reliability": 8,
           "timeout": 0
         }
       ]

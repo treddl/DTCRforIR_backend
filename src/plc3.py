@@ -48,10 +48,10 @@ class FPPLC3(PLC):
                 self.send(SENSOR3, liquidlevel_bottle, PLC3_ADDR)
                 # sensor3 = self.receive(SENSOR3, PLC3_ADDR)
                 print "DEBUG PLC3 - receive liquidlevel_bottle (SENSOR 3): ", liquidlevel_bottle
-                logging.info("SUCCESSFUL-VALUE-UPDATE plc3:: INFO: updated value from sensor 3: %.2f" % (liquidlevel_bottle))
+                logging.info("value-udpate-successful plc3:: INFO: successfully updated value from sensor 3: %.2f" % (liquidlevel_bottle))
 
             except:
-                logging.warning("FAILED-VALUE-UPDATE plc3:: WARNING: failed to update value from sensor 3")
+                logging.warning("value-udpate-FAILED plc3:: WARNING: failed to update value from sensor 3")
 
             time.sleep(PLC_PERIOD_SEC)
             # count += 1

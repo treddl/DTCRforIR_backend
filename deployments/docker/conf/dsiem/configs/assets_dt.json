@@ -1,0 +1,9 @@
+{
+  "assets": [
+    {
+      "name": "Digital Twin",
+      "cidr": "10.0.0.0/8",
+      "value": 5
+    }
+  ]  
+}

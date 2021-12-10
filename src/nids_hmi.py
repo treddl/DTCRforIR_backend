@@ -41,7 +41,7 @@ def arp_scan():
         clients.append(received.psrc)
      
     for client in clients:
-        log="%(HMI_ADDR)s %(HMI_ADDR)s TESTING-SIEM-ALARM nids_hmi:: WARNING: successfully reached host: %(client)s" %{"HMI_ADDR": HMI_ADDR, "client": client}
+        log="%(HMI_ADDR)s %(HMI_ADDR)s test-warning ids_hmi:: WARNING: HMI (10.0.0.4) successfully reached host: %(client)s" %{"HMI_ADDR": HMI_ADDR, "client": client}
         print(log)
         logging.warning(log)
         time.sleep(3)

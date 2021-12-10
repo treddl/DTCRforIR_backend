@@ -19,8 +19,8 @@ services:
       - http.cors.allow-origin=*
       - http.cors.allow-credentials=true
       - http.cors.allow-headers=Authorization,X-Requested-With,Content-Type,Content-Length
-    expose:
-      - 9200
+    ports:
+      - 9200:9200
     networks:
       - siemnet
     volumes:

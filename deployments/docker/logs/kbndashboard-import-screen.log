@@ -14,6 +14,14 @@ curl: (56) Recv failure: Connection reset by peer
 cannot connect to localhost:5605, will retry in 5 sec ..
 curl: (56) Recv failure: Connection reset by peer
 cannot connect to localhost:5605, will retry in 5 sec ..
+curl: (56) Recv failure: Connection reset by peer
+cannot connect to localhost:5605, will retry in 5 sec ..
+curl: (22) The requested URL returned error: 503 Service Unavailable
+cannot connect to localhost:5605, will retry in 5 sec ..
+curl: (22) The requested URL returned error: 503 Service Unavailable
+cannot connect to localhost:5605, will retry in 5 sec ..
+curl: (22) The requested URL returned error: 503 Service Unavailable
+cannot connect to localhost:5605, will retry in 5 sec ..
 curl: (22) The requested URL returned error: 503 Service Unavailable
 cannot connect to localhost:5605, will retry in 5 sec ..
 curl: (22) The requested URL returned error: 503 Service Unavailable

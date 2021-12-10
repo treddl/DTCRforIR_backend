@@ -3,11 +3,11 @@
       {      
       "id": 50,
       "name": "DoS attack via ICMP flooding",
-      "priority": 3,
+      "priority": 5,
       "disabled": false,
       "all_rules_always_active": false,
-      "kingdom": "Attacks",
-      "category": "Disruption",
+      "kingdom": "NETWORK ATTACK",
+      "category": "DISRUPTION",
       "rules": [
         {
           "name": "ICMP-REQUEST",
@@ -23,7 +23,7 @@
           "port_from": "ANY",
           "port_to": "ANY",
           "protocol": "ANY",
-          "reliability": 2,
+          "reliability": 1,
           "timeout": 0
         },
         {
@@ -40,7 +40,7 @@
           "port_from": "ANY",
           "port_to": "ANY",
           "protocol": "ANY",
-          "reliability": 8,
+          "reliability": 9,
           "timeout": 60
         }
       ]

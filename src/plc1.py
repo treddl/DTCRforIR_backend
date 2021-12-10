@@ -60,10 +60,12 @@ class FPPLC1(PLC):
                 logging.warning("LOG FILE MANIPULATION: Log file was deleted, new file created.")
             """
             
+            # read from own Sensor1
             print("sensor: ", SENSOR1)
             liquidlevel_tank = float(self.get(SENSOR1))   # physical process simulation (sensor 1 reads value)
             print 'DEBUG PLC1 - liquid level of tank (SENSOR 1): %.5f' % liquidlevel_tank
             self.send(SENSOR1, liquidlevel_tank, PLC1_ADDR) # network process simulation (value of sensor 1 is stored as enip tag)
+            logging.info("value-udpate-successful plc1:: INFO: successfully updated value from sensor 1: %.2f" % (liquidlevel_tank))
 
             if liquidlevel_tank <= TANK_M['LowerBound']:
                 print "INFO PLC1 - liquid level of tank (SENSOR 1) under LowerBound: %.2f <= %.2f -> close mv (ACTUATOR 1)." % (
@@ -77,6 +79,7 @@ class FPPLC1(PLC):
             try:
                 flowlevel = float(self.receive(SENSOR2_2, PLC2_ADDR))
                 print "DEBUG PLC1 - receive flowlevel (SENSOR 2): %f" % flowlevel
+                logging.info("value-reception-successful plc1:: INFO: successfully received the flow level of the pipe from PLC2 (sensor 2): %.2f" % (flowlevel))
                 self.send(SENSOR2_1, flowlevel, PLC1_ADDR)
 
                 if flowlevel >= SENSOR2_THRESH:
@@ -90,15 +93,15 @@ class FPPLC1(PLC):
                     logging.info(
                         "Flow level (SENSOR 2) under SENSOR2_THRESH:  %.2f < %.2f -> leave mv status (ACTUATOR 1)." % (
                             flowlevel, SENSOR2_THRESH))
-
             except:
-                logging.warning("VALUE-RECEPTION-FAILURE plc1:: WARNING: failed to receive data from PLC2 (flow level of sensor 2); filling process is unable to proceed properly")
+                logging.warning("value-reception-FAILED plc1:: WARNING: failed to receive data from PLC2 (flow level of sensor 2); filling process is unable to proceed properly")
                 
 
             # read from PLC3
             try:
                 liquidlevel_bottle = float(self.receive(SENSOR3_3, PLC3_ADDR))
                 print "DEBUG PLC1 - receive liquid level of bottle (SENSOR 3): %f" % liquidlevel_bottle
+                logging.info("value-reception-successful plc1:: INFO: successfully received the liquid level of the bottle from PLC3 (sensor 3): %.2f" % (liquidlevel_bottle))
                 self.send(SENSOR3_1, liquidlevel_bottle, PLC1_ADDR)
 
                 if liquidlevel_bottle >= BOTTLE_M['UpperBound']:
@@ -118,7 +121,7 @@ class FPPLC1(PLC):
                     self.send(ACTUATOR1, 1, PLC1_ADDR)
             
             except:
-                logging.warning("VALUE-RECEPTION-FAILURE plc1:: WARNING: failed to receive data from PLC3 (liquid level of sensor 3); filling process is unable to proceed properly")
+                logging.warning("value-reception-FAILED plc1:: WARNING: failed to receive data from PLC3 (liquid level of sensor 3); filling process is unable to proceed properly")
                
 
             time.sleep(PLC_PERIOD_SEC)

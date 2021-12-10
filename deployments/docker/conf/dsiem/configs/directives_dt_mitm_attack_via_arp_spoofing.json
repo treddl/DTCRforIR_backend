@@ -3,11 +3,11 @@
       {
       "id": 40,
       "name": "MitM attack via ARP spoofing",
-      "priority": 3,
+      "priority": 5,
       "disabled": false,
       "all_rules_always_active": false,
-      "kingdom": "Attacks",
-      "category": "Spoofing",
+      "kingdom": "network attack",
+      "category": "interception/manipulation/discrption",
       "rules": [
           {
           "name": "ARP spoof warning",
@@ -23,7 +23,7 @@
           "port_from": "ANY",
           "port_to": "ANY",
           "protocol": "ANY",
-          "reliability": 9,
+          "reliability": 8,
           "timeout": 0
         },
           {
@@ -40,7 +40,7 @@
           "port_from": "ANY",
           "port_to": "ANY",
           "protocol": "ANY",
-          "reliability": 2,
+          "reliability": 7,
           "timeout": 60
         },          
         {
