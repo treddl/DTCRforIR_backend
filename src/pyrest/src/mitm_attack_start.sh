@@ -3,6 +3,7 @@
 # starts the MitM attack via ARP spoofing
 echo 'run mitm_attack_start.sh'
 
+
 docker exec digital_twin screen -S attacker_mitm -X stuff "bash attack/mitm_attack.sh^M"
 
 # notes

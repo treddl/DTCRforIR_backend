@@ -1,0 +1,22 @@
+[33m * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.[0m
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+[31m   WARNING: This is a development server. Do not use it in a production deployment.[0m
+[2m   Use a production WSGI server instead.[0m
+ * Debug mode: off
+ * Running on http://0.0.0.0:9090/ (Press CTRL+C to quit)
+132.199.122.63 - - [10/Dec/2021 13:29:26] "[37mGET / HTTP/1.1[0m" 200 -
+132.199.122.63 - - [10/Dec/2021 13:29:42] "[37mGET / HTTP/1.1[0m" 200 -
+sucessfully started the MitM attack via ARP spoofing
+132.199.122.63 - - [10/Dec/2021 13:35:02] "[37mGET /start_mitm HTTP/1.1[0m" 200 -
+sucessfully stopped the MitM attack via ARP spoofing
+132.199.122.63 - - [10/Dec/2021 13:38:09] "[37mGET /stop_mitm HTTP/1.1[0m" 200 -
+[33m * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.[0m
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+[31m   WARNING: This is a development server. Do not use it in a production deployment.[0m
+[2m   Use a production WSGI server instead.[0m
+ * Debug mode: off
+ * Running on http://0.0.0.0:9090/ (Press CTRL+C to quit)
+sucessfully stopped the MitM attack via ARP spoofing
+132.199.122.63 - - [10/Dec/2021 13:40:43] "[37mGET /stop_mitm HTTP/1.1[0m" 200 -
