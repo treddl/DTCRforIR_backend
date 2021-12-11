@@ -33,6 +33,7 @@ def start_page():
 @cross_origin()
 def mitm_start():
     result_success = subprocess.check_output("bash src/mitm_attack_start.sh &>/dev/null", shell=True)
+    #result_success = subprocess.check_output("bash touch src/test.txt", shell=True)
     message = 'sucessfully started the MitM attack via ARP spoofing'
     print(message)
     return message
@@ -127,9 +128,9 @@ def restart():
     return "restarted dt"
 
 
-ip_vm = sys.argv[1]
-print('API is running on IP address:')
-print(ip_vm)
+#ip_vm = sys.argv[1]
+#print('API is running on IP address:')
+#print(ip_vm)
 #ip_vm=ipaddress.IPv4Address(ip_vm)
 
-app.run(port=9090, host=ip_vm)
+app.run(port=9090, host="0.0.0.0")
