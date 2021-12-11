@@ -1,14 +1,16 @@
 # python run time files
 src/utils.pyc
 src/fp_db.sqlite
+src/topo.pyc
 
 # all logs
 src/logs/*.log
 src/logs/host_vm_screen_logs/*.log
+src/pyrest/api-screen.log
+deployments/docker/logs/*.log
 *screenlog.0
 
 
-README.md
 cpppo/
 example-logs/
 mininet/
