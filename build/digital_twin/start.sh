@@ -11,10 +11,6 @@ pkill screen
 # customize bash of docker container
 bash src/customize_dt_bash.sh
 
-# copy private and public key for ssh sessions within the docker container
-cp src/ssh-keys/id_rsa /root/.ssh/id_rsa
-cp src/ssh-keys/id_rsa.pub /root/.ssh/authorized_keys
-
 cd src
 
 # remove logs from previous cyber range execution 
