@@ -2,7 +2,7 @@
   "directives": [
       {
       "id": 11,
-      "name": "Successful test of SIEM alarm function: ICMP ping confirms all PLCs are online",
+      "name": "Successful test of SIEM alarm function: ping confirms all hosts are online",
       "priority": 1,
       "disabled": false,
       "all_rules_always_active": false,
