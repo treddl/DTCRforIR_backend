@@ -81,4 +81,16 @@ def restart():
     result_success = subprocess.check_output("bash src/restart_dt_container.sh", shell=True)
     return "restarted dt"
 
+@app.route('/pull_frontend',methods=['GET'])
+@cross_origin()
+def pull_frontend():
+    result_success = subprocess.check_output("bash src/git_pull_frontend.sh", shell=True)
+    return "pulled frontendend from git"
+
+@app.route('/pull_backend',methods=['GET'])
+@cross_origin()
+def pull_backend():
+    result_success = subprocess.check_output("bash src/git_pull_backend.sh", shell=True)
+    return "pulled backend from git"
+
 app.run(port=9090, host="0.0.0.0")
