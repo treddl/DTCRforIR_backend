@@ -29,11 +29,11 @@ screen -dmS kbndashboard-import -L -Logfile logs/kbndashboard-import-screen.log 
 
 
 # stop and restart the API
-echo 'Stopping legacy api screen session'
-screen -X -S api quit
+# echo 'Stopping legacy api screen session'
+# screen -X -S api quit
 cd ./../../src/pyrest
 #ip_vm=$(cat .env | grep HOST_IP= | cut -d '=' -f2)
-screen -dmS api -L -Logfile ./api-screen.log python api.py 
+#screen -dmS api -L -Logfile ./api-screen.log python api.py 
 
 
 # stop and restart the frontend

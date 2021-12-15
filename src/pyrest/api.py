@@ -33,7 +33,6 @@ def start_page():
 @cross_origin()
 def mitm_start():
     result_success = subprocess.check_output("bash src/mitm_attack_start.sh &>/dev/null", shell=True)
-    #result_success = subprocess.check_output("bash touch src/test.txt", shell=True)
     message = 'sucessfully started the MitM attack via ARP spoofing'
     print(message)
     return message
@@ -44,52 +43,6 @@ def mitm_start():
 def mitm_stop():
     result_success = subprocess.check_output("bash src/mitm_attack_stop.sh &>/dev/null", shell=True)
     message = 'sucessfully stopped the MitM attack via ARP spoofing'
-    print(message)
-    return message
-
-# starts the DoS attack with attacker host as source IP address
-@app.route('/start_dos_a',methods=['GET'])
-@cross_origin()
-def dos_start_a():
-    result_success = subprocess.check_output("bash src/dos_attack_a.sh &>/dev/null", shell=True)
-    message = 'sucessfully started the DoS attack via ICMP flooding with attacker host as source IP address'
-    print(message)
-    return message
-
-# starts the DoS attack with attacker host as source IP address
-@app.route('/start_dos_b',methods=['GET'])
-@cross_origin()
-def dos_start_b():
-    result_success = subprocess.check_output("bash src/dos_attack_b.sh &>/dev/null", shell=True)
-    message = 'sucessfully started the DoS attack via ICMP flooding with spoofed host as source IP address'
-    print(message)
-    return message
-
-# starts the DoS attack with attacker host as source IP address
-@app.route('/start_dos_c',methods=['GET'])
-@cross_origin()
-def dos_start_c():
-    result_success = subprocess.check_output("bash src/dos_attack_c.sh &>/dev/null", shell=True)
-    message = 'sucessfully started the (distributed) DoS attack via ICMP flooding with spoofed random hosts as source IP addresses'
-    print(message)
-    return message
-
-# stop any of the DoS attacks
-@app.route('/stop_dos',methods=['GET'])
-@cross_origin()
-def dos_stop():
-    result_success = subprocess.check_output("bash src/dos_attack_stop.sh &>/dev/null", shell=True)
-    message = 'sucessfully stopped the DoS attack via ICMP flooding'
-    print(message)
-    return message
-
-
-# perform ARP scan from HMI
-@app.route('/arp_scan',methods=['GET'])
-@cross_origin()
-def arp_scan():
-    result_success = subprocess.check_output("bash src/arp_scan.sh &>/dev/null", shell=True)
-    message = 'sucessfully ran ARP scan from the HMI'
     print(message)
     return message
 
@@ -104,7 +57,8 @@ def submit(submit_data):
     return submit_data # a multidict containing POST data
 
 
-# stops the entire cyber range
+# stops the entire cyber range 
+# NB: including the API!
 @app.route('/stop_cr',methods=['GET'])
 @cross_origin()
 def compose():
@@ -126,11 +80,5 @@ def docker():
 def restart():
     result_success = subprocess.check_output("bash src/restart_dt_container.sh", shell=True)
     return "restarted dt"
-
-
-#ip_vm = sys.argv[1]
-#print('API is running on IP address:')
-#print(ip_vm)
-#ip_vm=ipaddress.IPv4Address(ip_vm)
 
 app.run(port=9090, host="0.0.0.0")

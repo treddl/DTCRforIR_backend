@@ -3,4 +3,4 @@
 # restarts the cyber range
 
 cd ./../../deployments/docker
-bash docker_start.sh
+bash docker_restart_for_api.sh

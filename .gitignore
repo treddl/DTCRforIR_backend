@@ -10,6 +10,7 @@ src/pyrest/api-screen.log
 deployments/docker/logs/*.log
 *screenlog.0
 
+src/pyrest/trainee_data.txt
 
 cpppo/
 example-logs/
