@@ -4,18 +4,18 @@
     {
       "id": "350e16e0-38b3-11ec-a547-a7b24e1b3b31",
       "type": "dashboard",
-      "updated_at": "2021-11-26T11:07:57.441Z",
-      "version": "WzE1LDFd",
+      "updated_at": "2021-12-16T10:13:19.513Z",
+      "version": "WzE4LDFd",
       "attributes": {
         "title": "SIEM_IR",
         "hits": 0,
         "description": "Kibana dashboard for DSIEM",
-        "panelsJSON": "[{\"embeddableConfig\":{\"title\":\"Timeline & Count of Events and Alarms\"},\"gridData\":{\"h\":9,\"i\":\"9\",\"w\":36,\"x\":12,\"y\":0},\"panelIndex\":\"9\",\"title\":\"Timeline & Count of Events and Alarms\",\"version\":\"7.6.1\",\"panelRefName\":\"panel_0\"},{\"embeddableConfig\":{\"title\":\"Alarms\",\"vis\":{\"defaultColors\":{\"0 - 20\":\"rgb(0,104,55)\",\"20 - 50\":\"rgb(255,255,190)\",\"50 - 100\":\"rgb(165,0,38)\"},\"legendOpen\":true}},\"gridData\":{\"h\":9,\"i\":\"10\",\"w\":12,\"x\":0,\"y\":0},\"panelIndex\":\"10\",\"title\":\"Alarms\",\"version\":\"7.6.1\",\"panelRefName\":\"panel_1\"},{\"embeddableConfig\":{\"columns\":[\"timestamp\",\"category\",\"title\",\"sensor\",\"src_ip\",\"dst_ip\",\"plugin_sid\"],\"title\":\"Event Search & Overview\"},\"gridData\":{\"h\":17,\"i\":\"14\",\"w\":48,\"x\":0,\"y\":25},\"panelIndex\":\"14\",\"title\":\"Event Search & Overview\",\"version\":\"7.6.1\",\"panelRefName\":\"panel_2\"},{\"embeddableConfig\":{\"columns\":[\"title\",\"src_ips\",\"dst_ips\",\"risk_class\",\"category\",\"kingdom\"],\"title\":\"Alarm Search & Overview\"},\"gridData\":{\"h\":16,\"i\":\"15\",\"w\":48,\"x\":0,\"y\":9},\"panelIndex\":\"15\",\"title\":\"Alarm Search & Overview\",\"version\":\"7.6.1\",\"panelRefName\":\"panel_3\"}]",
+        "panelsJSON": "[{\"version\":\"7.6.1\",\"gridData\":{\"h\":9,\"i\":\"9\",\"w\":36,\"x\":12,\"y\":0},\"panelIndex\":\"9\",\"embeddableConfig\":{\"title\":\"Timeline & Count of Events and Alarms\"},\"title\":\"Timeline & Count of Events and Alarms\",\"panelRefName\":\"panel_0\"},{\"version\":\"7.6.1\",\"gridData\":{\"h\":9,\"i\":\"10\",\"w\":12,\"x\":0,\"y\":0},\"panelIndex\":\"10\",\"embeddableConfig\":{\"title\":\"Alarms\",\"vis\":{\"defaultColors\":{\"0 - 20\":\"rgb(0,104,55)\",\"20 - 50\":\"rgb(255,255,190)\",\"50 - 100\":\"rgb(165,0,38)\"},\"legendOpen\":true}},\"title\":\"Alarms\",\"panelRefName\":\"panel_1\"},{\"version\":\"7.6.1\",\"gridData\":{\"h\":17,\"i\":\"14\",\"w\":48,\"x\":0,\"y\":25},\"panelIndex\":\"14\",\"embeddableConfig\":{\"title\":\"Event Overview\",\"columns\":[\"timestamp\",\"category\",\"title\",\"sensor\",\"src_ip\",\"dst_ip\",\"plugin_sid\"]},\"title\":\"Event Overview\",\"panelRefName\":\"panel_2\"},{\"version\":\"7.6.1\",\"gridData\":{\"h\":16,\"i\":\"15\",\"w\":48,\"x\":0,\"y\":9},\"panelIndex\":\"15\",\"embeddableConfig\":{\"title\":\"Alarm Overview\",\"columns\":[\"title\",\"risk_class\",\"category\",\"kingdom\"]},\"title\":\"Alarm Overview\",\"panelRefName\":\"panel_3\"}]",
         "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
         "version": 1,
         "timeRestore": true,
-        "timeTo": "now/d",
-        "timeFrom": "now/d",
+        "timeTo": "now",
+        "timeFrom": "now-15m",
         "refreshInterval": {
           "pause": true,
           "value": 0
@@ -53,7 +53,7 @@
     {
       "id": "b4844b80-b45c-11e8-b3e4-11404c6637fe",
       "type": "visualization",
-      "updated_at": "2021-11-26T11:04:12.217Z",
+      "updated_at": "2021-12-16T09:23:18.167Z",
       "version": "WzMsMV0=",
       "attributes": {
         "title": "SIEM - Events Count",
@@ -73,7 +73,7 @@
     {
       "id": "217b62e0-b45e-11e8-b3e4-11404c6637fe",
       "type": "visualization",
-      "updated_at": "2021-11-26T11:04:12.217Z",
+      "updated_at": "2021-12-16T09:23:18.167Z",
       "version": "WzQsMV0=",
       "attributes": {
         "title": "SIEM - Open Alarms",
@@ -99,7 +99,7 @@
     {
       "id": "c7aa9f10-e365-11e8-9c9b-556fd2a389b2",
       "type": "search",
-      "updated_at": "2021-11-26T11:04:12.217Z",
+      "updated_at": "2021-12-16T09:23:18.167Z",
       "version": "WzUsMV0=",
       "attributes": {
         "title": "SIEM - Events Search",
@@ -137,7 +137,7 @@
     {
       "id": "334c77b0-b338-11e8-b3e4-11404c6637fe",
       "type": "search",
-      "updated_at": "2021-11-26T11:04:12.217Z",
+      "updated_at": "2021-12-16T09:23:18.167Z",
       "version": "WzYsMV0=",
       "attributes": {
         "title": "SIEM - Alarm Search",
@@ -174,7 +174,7 @@
     {
       "id": "siem_alarms",
       "type": "index-pattern",
-      "updated_at": "2021-11-26T11:04:12.217Z",
+      "updated_at": "2021-12-16T09:23:18.167Z",
       "version": "WzcsMV0=",
       "attributes": {
         "title": "siem_alarms",
@@ -190,7 +190,7 @@
     {
       "id": "siem_events",
       "type": "index-pattern",
-      "updated_at": "2021-11-26T11:04:12.217Z",
+      "updated_at": "2021-12-16T09:23:18.167Z",
       "version": "WzgsMV0=",
       "attributes": {
         "title": "siem_events-*",
