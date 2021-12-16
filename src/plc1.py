@@ -101,7 +101,7 @@ class FPPLC1(PLC):
             try:
                 liquidlevel_bottle = float(self.receive(SENSOR3_3, PLC3_ADDR))
                 print "DEBUG PLC1 - receive liquid level of bottle (SENSOR 3): %f" % liquidlevel_bottle
-                logging.info("value-reception-successful plc1:: INFO: successfully received the liquid level of the bottle from PLC3 (sensor 3): %.2f" % (liquidlevel_bottle))
+                logging.info("value-reception-successful plc1:: INFO: successfully received the liquid level of the bottle from PLC3 (sensor 3) FLAG: aurora-polaris: %.2f" % (liquidlevel_bottle))
                 self.send(SENSOR3_1, liquidlevel_bottle, PLC1_ADDR)
 
                 if liquidlevel_bottle >= BOTTLE_M['UpperBound']:
