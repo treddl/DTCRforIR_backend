@@ -65,7 +65,7 @@ class FPPLC1(PLC):
             liquidlevel_tank = float(self.get(SENSOR1))   # physical process simulation (sensor 1 reads value)
             print 'DEBUG PLC1 - liquid level of tank (SENSOR 1): %.5f' % liquidlevel_tank
             self.send(SENSOR1, liquidlevel_tank, PLC1_ADDR) # network process simulation (value of sensor 1 is stored as enip tag)
-            logging.info("value-udpate-successful plc1:: INFO: successfully updated value from sensor 1: %.2f" % (liquidlevel_tank))
+            logging.info("value-update-successful plc1:: INFO: successfully updated value from sensor 1: %.2f" % (liquidlevel_tank))
 
             if liquidlevel_tank <= TANK_M['LowerBound']:
                 print "INFO PLC1 - liquid level of tank (SENSOR 1) under LowerBound: %.2f <= %.2f -> close mv (ACTUATOR 1)." % (

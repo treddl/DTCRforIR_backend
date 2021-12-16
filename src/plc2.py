@@ -49,9 +49,9 @@ class FPPLC2(PLC):
                 self.send(SENSOR2, flowlevel, PLC2_ADDR)
                 # sensor2 = self.receive(SENSOR2, PLC2_ADDR)
                 print "DEBUG PLC2 - receive flowlevel (SENSOR 2): ", flowlevel
-                logging.info("value-udpate-successful plc2:: INFO: successfully updated value from sensor 2: %.2f" % (flowlevel))
+                logging.info("value-update-successful plc2:: INFO: successfully updated value from sensor 2: %.2f" % (flowlevel))
             except:
-                logging.warning("value-udpate-FAILED plc2:: WARNING: failed to update value from sensor 2")
+                logging.warning("value-update-FAILED plc2:: WARNING: failed to update value from sensor 2")
 
             time.sleep(PLC_PERIOD_SEC)
             # count += 1
