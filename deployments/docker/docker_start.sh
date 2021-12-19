@@ -2,8 +2,8 @@
 #
 # (re)starts docker containers 
 
-#ip=$(ip addr show enp1s0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
-#echo "HOST_IP=$ip" > .env
+ip=$(ip addr show enp1s0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+echo "HOST_IP=$ip" > .env
 #uncomment if interface for cyber range is known to retrieve ip address automatically
 
 # stop docker containers and remove legacy containers and volumes
