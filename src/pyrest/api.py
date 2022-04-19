@@ -85,7 +85,7 @@ def restart():
 @cross_origin()
 def pull_frontend():
     result_success = subprocess.check_output("bash src/git_pull_frontend.sh", shell=True)
-    return "pulled frontendend from git"
+    return "pulled frontend from git"
 
 @app.route('/pull_backend',methods=['GET'])
 @cross_origin()
