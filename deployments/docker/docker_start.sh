@@ -22,7 +22,7 @@ pkill screen
 # imports the kibana-based dashboard
 #echo 'Stopping legacy kibana-dashboard import screen session'
 #screen -X -S kbndashboard-import quit
-screen -dmSL kbndashboard-import -Logfile bash ./kbndashboard-import.sh localhost ./../kibana/dashboard-siem.json
+screen -dmSL main bash ./kbndashboard-import.sh localhost ./../kibana/dashboard-siem.json
 
 
 # stop and restart the API
